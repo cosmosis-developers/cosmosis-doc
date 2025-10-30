@@ -60,7 +60,7 @@ The ``option`` argument is an instance of a CosmoSIS DataBlock, containing every
     # or, for value with a fallback option in case it is not set:
     y = options.get_int(option_section, "name_of_int_option", default=4)
 
-For a full list of the ``get`` functions see the :doc:`Python API</api/api_python>`.
+For a full list of the ``get`` functions see the :doc:`Block Python API</api/api_python>`.
 
 The constant ``option_section`` just refers to the section of the datablock that generated this module.  Usually you will want to use it.
 
@@ -88,7 +88,7 @@ For example, here is an execute function that calculates ``D_V``, a distance mea
 
     block["distances", "d_v"] = d_v
 
-The full list of methods that a block can run is discussed on the :doc:`Python API </api/api_python>` page.
+The full list of methods that a block can run is discussed on the :doc:`Block Python API </api/api_python>` page.
 
 You can explore what the previous pipeline has put in the block either by running the pipeline with the test sampler and exploring the saved directory from the block, by using the ``block.keys()`` method, or by reading the documentation for the module on the :doc:`Standard Library Overview </usage/standard_library_overview>` page.
 

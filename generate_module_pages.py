@@ -471,7 +471,11 @@ def main(source_dir):
                 y = yaml.safe_load(f)
 
             y['interface_path'] = os.path.join(directory, y['interface'])
-            page_text = make_page_text(y)
+            try:
+                page_text = make_page_text(y)
+            except Exception as e:
+                print("Error making page for:", yaml_path, e)
+                raise
             name = y['name']
             with open(f"./reference/standard_library/{name}.rst", 'w') as f:
                 f.write(page_text)
