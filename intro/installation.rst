@@ -52,7 +52,7 @@ If you want to use `CosmoPower <https://github.com/alessiospuriomancini/cosmopow
 
 Whenever you start a fresh terminal shell you need to run these commands to get set up again::
 
-    conda activate ./env
+    source ./env/bin/activate
     source cosmosis-configure
 
 
