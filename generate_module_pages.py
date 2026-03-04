@@ -5,228 +5,15 @@ import tabulate
 
 yaml_filename = "module.yaml"
 
-
-
-background = {
-    "distances",
-    "growth_factor",
-    "log_w_model",
-    "astropy_background",
-    "rescale_distances_rdh",
-}
-
-boltzmann = {
-    "isitgr-camb",
-    "camb",
-    "class",
-    "mgcamb",
-}
-
-emulators = {
-    "bacco_emulator",
-    "CosmicEmu",
-    "EuclidEmulator2",
-    "FrankenEmu",
-}
-
-
-structure = {
-    "CRL_Eisenstein_Hu",
-    # "pyhmcode",
-    "Extreme_Value_Statistics",
-    "Press_Schechter_MF",
-    "Sheth-Tormen MF",
-    "Tinker_MF",
-    "extract_growth",
-    "extrapolate",
-    "constant_bias",
-    "sigma_cpp",
-    "sigma_r",
-    "NLfactor",
-
-}
-
-twopoint_maths = {
-    "cl_to_corr",
-    "cl_to_xi_nicaea",
-    "cl_to_xi_wigner_d",
-    "cl_to_xi_fullsky",
-
-    "project_2d",
-    "cosebis",
-    "wl_spectra",
-    "wl_spectra_ppf",
-    "hmcode_eta",
-    "pyhmcode",
-}
-
-baryons = {
-    "baryonic",
-    "owls",
-    "amod",
-
-}
-
-twopoint_sys = {
-    "add_intrinsic",
-    "ia_z_powerlaw",
-    "apply_astrophysical_biases",
-    "shear_bias",
-    "kappa_beam",
-    "kappa_ell_cut",
-    "linear_alignments",
-    "constant_bias",
-    "no_bias",
-    "clerkin",
-    "add_magnification",
-    "add_gammat_point_mass",
-    "binwise_bias",
-    "tatt",
-    "additive_systematic",
-}
-
-sample_properties = {
-    "Joachimi_Bridle_alpha",
-    "gaussian_window",
-    "load_nz",
-    "load_nz_fits",
-    "load_nz_sacc",
-    "photoz_bias",
-    "photoz_distortion",
-    "smail",
-    "nz_multirank",
-}
-
-cmb_likelihoods = {
-    "BICEP2",
-    "candl",
-    "wmap",
-    "wmap_shift",
-    "planck2018",
-    "planck_py",
-    "planck_npipe",
-    "planck_sz",
-    "lollipop",
-    "hillipop",
-    "act_dr6",
-    "act-dr6-lens",
-    "act_dr6_lite",
-
-}
-
-bao_likelihoods = {
-    "BOSS",
-    "boss_dr12",
-    "WiggleZBao",
-    "6dFGS",
-    "mgs_bao",
-    "eboss_dr16_lrg",
-    "eboss_dr16_qso",
-    "boss_dr12_lrg_reanalyze",
-    "eboss_dr16_elg",
-    "eboss_dr16_lya",
-    "mgs",
-    "lrg",
-    "qso",
-    "eboss_dr14_lya",
-    "des-y3-bao",
-    "des-y6-bao",
-    "des-y6-bao-5bins",
-    "desi_dr1",
-    "desi_dr1_arxiv",
-    "desi_dr2",
-}
-
-supernova_likelihoods = {
-    "jla",
-    "pantheon",
-    "pantheon_plus",
-    "des-y5-sn",
-    "salt2",
-}
-
-cepheid_likelihoods = {
-    "Riess11",
-    "Riess16",
-    "Riess21",
-}
-
-lensing_clustering_likelihoods = {
-    "2pt",
-    "sacc_like",
-    "hsc_cosmic_shear",
-    "simple_like",
-
-}
-
-strong_lensing_likelihoods = {
-    "h0licow",
-    "strong_lens_time_delays",
-    "tdcosmo",
-    "balmes",
-}
-
-likelihoods = {
-    "BBN",
-    "Cluster_mass",
-    "JulloLikelihood",
-    "fgas",
-}
-
-
-
-misc = {
-    "fast_pt",
-    "BBN-Consistency",
-    "w0wa_sum_prior",
-    "consistency",
-    "sigma8_rescale",
-    "stop",
-    "delete",
-    "copy",
-    "rename",
-    "correlated_priors",
-    "random_fail",
-}
-
-uncategorized = {
-    "generate_observable_cls",
-    "add_colours",
-    "flexible_grid",
-    "choose_ia",
-    "fiducial_cl",
-}
-
-
-categories = {
-    "Background": background,
-    "Baryons": baryons,
-    "Boltzmann": boltzmann,
-    "Emulators": emulators,
-    "Structure": structure,
-    "Two-point Mathemetics": twopoint_maths,
-    "Two-point Systematics": twopoint_sys,
-    "Sample Properties": sample_properties,
-    "CMB Likelihoods": cmb_likelihoods,
-    "BAO Likelihoods": bao_likelihoods,
-    "Supernova Likelihoods": supernova_likelihoods,
-    "Cepheid Likelihoods": cepheid_likelihoods,
-    "Lensing and Clustering Likelihoods": lensing_clustering_likelihoods,
-    "Strong Lensing Likelihoods": strong_lensing_likelihoods,
-    "Other Likelihoods": likelihoods,
-    "Misc & Utilities": misc,
-    "Others": uncategorized,
-}
-
-
 category_blurb = {
     "Background": "These modules calculate quantities related to the average background expansion of the Universe.",
     "Boltzmann": "Boltzmann codes evolve cosmic perturbations from the early Universe through recombination and to late times, and power spectra of matter, the CMB, and other quantities.",
     "Emulators": "These modules emulate aspects of cosmic structure based on fits to simulations.",
     "Baryons": "These modules modify matter power spectra to account for the effects of baryonic physics.",
     "Structure": "These modules compute aspects of cosmic structure, for example by integrating over cosmic structure, or calculating halo model quantities.",
-    "Two-point Mathemetics": "These modules perform mathematical claculations associated with two-point statistics, mostly on a sphere.",
+    "Two-point Mathematics": "These modules perform mathematical calculations associated with two-point statistics, mostly on a sphere.",
     "Two-point Systematics": "These modules compute and apply quantities associated with systematics errors on two-point (and potentially other) quantities.",
+    "One-point Mathematics": "These modules perform mathematical calculations associated with one-point statistics, mostly on a sphere.",
     "Sample Properties": "These modules compute properties, mostly number density, of galaxy samples.",
     "CMB Likelihoods": "These modules provide likelihoods that compare theory predictions to CMB data",
     "BAO Likelihoods": "These modules provide likelihoods that compare theory predictions to BAO data",
@@ -234,9 +21,10 @@ category_blurb = {
     "Cepheid Likelihoods": "These modules provide likelihoods that compare theory predictions to Cepheid data",
     "Lensing and Clustering Likelihoods": "These modules provide likelihoods that compare theory predictions to weak lensing and clustering data",
     "Strong Lensing Likelihoods": "These modules provide likelihoods that compare theory predictions to strong lensing data",
-    "Other Likelihoods": "These module provide likelihoods that compare theory predictions to other data",
+    "Other Likelihoods": "These modules provide likelihoods that compare theory predictions to other data",
     "Misc & Utilities": "These modules supply special utilities or calculation tools",
-    "Others": "Modules that may be obsolete or only useful for a very specific project",
+    "Obsolete": "Modules that may be obsolete or only useful for a very specific project",
+    "Others": "Modules that have not yet been categorized",
 }
 
 
@@ -416,8 +204,7 @@ together pieces of it to build analysis piplines.
 """
 
 
-
-def make_overview(purposes):
+def make_overview(purposes, categories):
 
     out = []
     template = """
@@ -457,6 +244,8 @@ def main(source_dir):
     n = len(source_dir)
     m = len(yaml_filename)
     purposes = {}
+    categories = {cat: set() for cat in category_blurb.keys()}
+    categories['Others'] = set()
 
     for (dirpath, dirnames, filenames) in os.walk(source_dir):
         if 'cosmosis-des-library' in dirpath:
@@ -477,15 +266,15 @@ def main(source_dir):
                 f.write(page_text)
 
             purposes[name] = y['purpose']
-            for cat, cat_set in categories.items():
-                if name in cat_set:
-                    break
+            if 'category' in y:
+                cat = y['category']
+                categories[cat].add(name)
             else:
-                print("Note: module has no category and will appear as uncategorized:", name, yaml_path)
-                uncategorized.add(name)
+                print("Note: module has no category and will appear as others:", name, yaml_path)
+                categories["Others"].add(name)
 
 
-    make_overview(purposes)
+    make_overview(purposes, categories)
 
 
 
