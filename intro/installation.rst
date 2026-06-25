@@ -40,7 +40,7 @@ Then, whichever you do, run these commands to install everything and download th
     chmod +x Miniforge3.sh
     ./Miniforge3.sh -b -p ./env
     source ./env/bin/activate
-    mamba install -y cosmosis cosmosis-build-standard-library
+    mamba install -y cosmosis cosmosis-build-standard-library "scipy<1.18"
     source cosmosis-configure
     cosmosis-build-standard-library main
 
