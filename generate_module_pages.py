@@ -235,6 +235,7 @@ def make_overview(purposes, categories):
         module_lines = "\n".join(module_lines)
         out.append(template.format(cat=cat, module_lines=module_lines, blurb=blurb))
 
+    print("Writing: usage/standard_library_overview.rst")
     with open("usage/standard_library_overview.rst", "w") as f:
         f.write(overview_template)
         f.write("\n\n".join(out))
