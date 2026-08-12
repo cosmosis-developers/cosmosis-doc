@@ -19,6 +19,10 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./cosmosis'))
+
+os.environ["COSMOSIS_ALLOW_UNBUILT_IMPORT"] = "1"
+
 from cosmosis_version import __version__ as cosmosis_version
 
 # -- General configuration ------------------------------------------------
@@ -30,7 +34,7 @@ from cosmosis_version import __version__ as cosmosis_version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.mathjax', 'nbsphinx', 'sphinx_rtd_theme',]
+extensions = ['sphinx.ext.mathjax', 'nbsphinx', 'sphinx_rtd_theme', 'sphinx.ext.autodoc']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -77,7 +81,9 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', "cosmosis"]
+
+autodoc_mock_imports = ['numpy', 'scipy', 'matplotlib', 'astropy', 'emcee', 'getdist', 'mpi4py']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

@@ -1,5 +1,5 @@
-C++ API
-=======
+Block C++ API
+=============
 
 C++ Module Structure
 --------------------

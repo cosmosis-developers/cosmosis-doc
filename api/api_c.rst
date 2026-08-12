@@ -1,5 +1,5 @@
-C API
-======
+Block C API
+===========
 
 Include the header ``cosmosis/datablock/c_datablock.h`` (relative to the include directory ``${COSMOSIS_SRC_DIR}``) to write cosmosis modules in C.  
 

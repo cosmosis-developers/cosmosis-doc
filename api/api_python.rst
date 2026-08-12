@@ -1,6 +1,7 @@
-Python API
+Block Python API
 ****************
 
+This page describes how to use CosmoSIS DataBlocks in Python modules.
 
 Overview
 --------

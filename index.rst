@@ -47,6 +47,7 @@ For help with CosmoSIS you can `open an issue <https://github.com/cosmosis-devel
    api/api_c
    api/api_cpp
    api/api_f90
+   api/python
 
 .. toctree::
    :maxdepth: 1
