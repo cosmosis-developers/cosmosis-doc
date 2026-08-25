@@ -55,6 +55,11 @@ Whenever you start a fresh terminal shell you need to run these commands to get 
     source ./env/bin/activate
     source cosmosis-configure
 
+If you want to use the newer versions of camb (v2) or scipy (v1.18) then you will also need to replace the fast-pt version, like this::
+
+    conda uninstall --force fast-pt
+    pip install "git+https://github.com/joezuntz/FAST-PT/"
+
 
 
 Conda-Forge (existing installation)
