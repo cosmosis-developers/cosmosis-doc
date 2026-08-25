@@ -40,7 +40,7 @@ Then, whichever you do, run these commands to install everything and download th
     chmod +x Miniforge3.sh
     ./Miniforge3.sh -b -p ./env
     source ./env/bin/activate
-    mamba install -y cosmosis cosmosis-build-standard-library "scipy<1.18" "numpy<2.5"
+    mamba install -y cosmosis cosmosis-build-standard-library "scipy<1.18" "numpy<2.5" "camb=1.*"
     source cosmosis-configure
     cosmosis-build-standard-library main
 
@@ -48,7 +48,7 @@ This will make a new directory cosmosis-standard-library with the cosmology pack
 
 If you want to use `CosmoPower <https://github.com/alessiospuriomancini/cosmopower>`_ then change the fourth line above to::
 
-    mamba install -y cosmosis cosmosis-build-standard-library cosmopower
+    mamba install -y cosmosis cosmosis-build-standard-library cosmopower "camb<2" "scipy=1.17"
 
 Whenever you start a fresh terminal shell you need to run these commands to get set up again::
 
@@ -62,7 +62,7 @@ Conda-Forge (existing installation)
 
 If you already have conda installed on your computer, then you can create a new environment and install cosmosis tools in it with::
 
-    conda create -p ./env -c conda-forge cosmosis cosmosis-build-standard-library
+    conda create -p ./env -c conda-forge cosmosis cosmosis-build-standard-library "camb<2" "scipy=1.17"
     conda activate ./env
     source cosmosis-configure
     cosmosis-build-standard-library
@@ -73,7 +73,7 @@ If you find this takes a very long time, you can try instead (mamba is a faster 
 
     conda create -p ./env -c conda-forge mamba
     conda activate ./env
-    mamba install -y cosmosis cosmosis-build-standard-library
+    mamba install -y cosmosis cosmosis-build-standard-library "camb<2" "scipy=1.17"
     source cosmosis-configure
     cosmosis-build-standard-library main
 
