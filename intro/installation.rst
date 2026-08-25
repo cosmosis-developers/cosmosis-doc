@@ -61,6 +61,7 @@ If you want to use the newer versions of camb (v2) or scipy (v1.18) then you wil
     pip install "git+https://github.com/joezuntz/FAST-PT/"
 
 
+Make sure you also have the newest cosmosis-standard-library version to get recent compatibility updates for these.
 
 Conda-Forge (existing installation)
 ===================================
