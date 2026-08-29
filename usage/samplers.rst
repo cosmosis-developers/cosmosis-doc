@@ -58,6 +58,7 @@ Grid Samplers
 
      grid: Simple grid sampler <../reference/samplers/grid>
      snake: Intelligent Grid exploration <../reference/samplers/snake>
+     latinhypercube: Latin Hypercube sampler <../reference/samplers/latinhypercube>
 
 
 Specialist Samplers
@@ -69,4 +70,5 @@ Specialist Samplers
      fisher: Fisher matrix calculation <../reference/samplers/fisher>
      star: Simple star sampler <../reference/samplers/star>
      apriori: Draw samples from the prior and evaluate the likelihood <../reference/samplers/apriori>
+     cosmopower: Special sampler for training CosmoPower emulators <../reference/samplers/cosmopower>
 
