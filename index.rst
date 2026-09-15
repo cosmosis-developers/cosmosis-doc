@@ -37,6 +37,7 @@ For help with CosmoSIS you can `open an issue <https://github.com/cosmosis-devel
    features/debugging
    features/Interactive Postprocessing
    features/campaign
+   features/cosmopower_training
 
 
 .. toctree::
