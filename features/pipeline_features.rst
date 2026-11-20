@@ -73,7 +73,7 @@ Then you can create a graph from the command line using the ``--graph`` flag and
 
 .. code-block:: bash
 
-    cosmosis --graph des-y1.dot  examples/des-y1.ini
+    cosmosis --graph des-y1.dot  examples/desy1/des-y1.ini
     dot -Tpng -o des-y1.png des-y1.dot
 
 And example is shown below:

@@ -19,7 +19,7 @@ These tutorials are in the CosmoSIS standard library, and should be run from tha
 Parameter files
 ============================
 
-Have a look at the file :code:`examples/planck.ini`.  CosmoSIS is always run on a single parameter file like this.  It specifies how to construct a pipeline that generates a likelihood, and what to do with that likelihood once it is calculated.  
+Have a look at the file :code:`examples/planck/planck.ini`.  CosmoSIS is always run on a single parameter file like this.  It specifies how to construct a pipeline that generates a likelihood, and what to do with that likelihood once it is calculated.  
 
 CosmoSIS parameter files use the :code:`ini` format, which has section names with square brackets around them and parameters specified with an equals sign.  This example says there is a section called :code:`runtime` with a parameter named :code:`sampler` with the values "test"::
 
@@ -27,7 +27,7 @@ CosmoSIS parameter files use the :code:`ini` format, which has section names wit
     [runtime]
     sampler = test
 
-Each CosmoSIS run uses at least two ini files, this one, called a parameter file, and a second *values* file, specifying the cosmological and other varied parameters used in the pipeline.  In this case the values file is :code:`examples/planck_values.ini`.
+Each CosmoSIS run uses at least two ini files, this one, called a parameter file, and a second *values* file, specifying the cosmological and other varied parameters used in the pipeline.  In this case the values file is :code:`examples/planck/planck_values.ini`.
 
 Running CosmoSIS on a parameter file
 =====================================
@@ -35,7 +35,7 @@ Running CosmoSIS on a parameter file
 
 Run CosmoSIS on this parameter file with this command::
 
-    cosmosis examples/planck.ini
+    cosmosis examples/planck/planck.ini
 
 You will see a lot of output showing:
 
@@ -84,7 +84,7 @@ It will also save a directory ``output/planck`` full of all the quantities it ca
 Defining a sampler
 ===================
 
-The first lines in the parameter file :code:`examples/planck.ini` are::
+The first lines in the parameter file :code:`examples/planck/planck.ini` are::
 
     [runtime]
     sampler = test
@@ -133,7 +133,7 @@ The pipeline we have built is a machine for turning a collection of numerical pa
 
     [pipeline]
     ...
-    values = examples/planck_values.ini
+    values = examples/planck/planck_values.ini
 
 This option points to the values file, the second cosmosis ini file.  The values file contains all the inputs that are passed to the pipeline.  For example::
 

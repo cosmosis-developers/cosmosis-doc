@@ -55,4 +55,4 @@ This bash script will run the Pantheon example in the CosmoSIS Standard Library.
     source $CFS/des/zuntz/cosmosis-global/setup-cosmosis-nersc
 
     # Launch the program. Don't forget the --mpi flag!
-    srun -u -n ${NUM_PROCESSES} --cpus-per-task ${OMP_NUM_THREADS} cosmosis examples/pantheon.ini --mpi
+    srun -u -n ${NUM_PROCESSES} --cpus-per-task ${OMP_NUM_THREADS} cosmosis examples/sn/pantheon.ini --mpi

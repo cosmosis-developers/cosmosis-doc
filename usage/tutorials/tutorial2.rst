@@ -8,15 +8,15 @@ This example uses a supernova likelihood, of the Pantheon supernova sample, whic
 Running an MCMC
 ================
 
-Have a look at :code:`examples/pantheon.ini` and its values file :code:`examples/pantheon_values.ini`.
+Have a look at :code:`examples/sn/pantheon.ini` and its values file :code:`examples/sn/pantheon_values.ini`.
 
 Let's try using `MPI parallelism <https://en.wikipedia.org/wiki/Message_Passing_Interface>`_ to speed up this analysis.  Run this command::
 
-    mpirun -n 4 cosmosis --mpi examples/pantheon.ini
+    mpirun -n 4 cosmosis --mpi examples/sn/pantheon.ini
 
 If that fails straight away then you may not have MPI installed (MPI should work automatically with the conda installation method - let us know if not). If it fails then you can fall back to serial mode::
 
-    cosmosis examples/pantheon.ini
+    cosmosis examples/sn/pantheon.ini
 
 
 The code will take a few minutes to run, and will generate a file called :code:`output/pantheon.txt` as output.  This file will contain a Monte Carlo Markov Chain (MCMC) which you can use as samples from the posterior probability distribution of the model given the data.
@@ -26,7 +26,7 @@ The Parameter File
 =========================
 
 
-This time the parameter file, :code:`examples/pantheon.ini` contains these lines (plus some comments)::
+This time the parameter file, :code:`examples/sn/pantheon.ini` contains these lines (plus some comments)::
 
     [runtime]
     sampler = emcee

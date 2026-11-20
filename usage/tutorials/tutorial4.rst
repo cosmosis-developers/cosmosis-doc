@@ -14,7 +14,7 @@ You can add modules into the middle of an existing pipeline, or at the end.
 Adding the new module
 =====================
 
-In the :code:`[pipeline]` section of :code:`examples/planck.ini` you will find::
+In the :code:`[pipeline]` section of :code:`examples/planck/planck.ini` you will find::
 
     [pipeline]
     modules = consistency camb planck
@@ -27,7 +27,7 @@ The latter page lists the file we should use for this module::
 
     File: likelihood/boss_dr12/boss_dr12.py
 
-This means that we make a new section in the parameter file that we are using, with this information in.  We can add new text to the bottom of :code:`examples/planck.ini`::
+This means that we make a new section in the parameter file that we are using, with this information in.  We can add new text to the bottom of :code:`examples/planck/planck.ini`::
 
     [boss]
     file = likelihood/boss_dr12/boss_dr12.py
@@ -60,7 +60,7 @@ It's fine to include unused modules in the parameter file - it can be useful lat
 
 Once we have this, we can run the module with::
 
-    cosmosis examples/planck.ini
+    cosmosis examples/planck/planck.ini
 
 and it will now print out both likelihoods, and their total::
 

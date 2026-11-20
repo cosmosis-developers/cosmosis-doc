@@ -78,7 +78,7 @@ For example, this command would change the sampler being used to emcee instead o
 
 The :code:`-v` command is used exactly the same way but for the values file, for example, this would change one of the parameter ranges in the pantheon example::
 
-    cosmosis examples/pantheon.ini  -v cosmological_parameters.omega_m="0.2 0.3 0.5"
+    cosmosis examples/sn/pantheon.ini  -v cosmological_parameters.omega_m="0.2 0.3 0.5"
 
 Note the quotations marks above, which are needed when there are spaces in the parameter value. 
 
