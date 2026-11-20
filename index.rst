@@ -69,6 +69,7 @@ For help with CosmoSIS you can `open an issue <https://github.com/cosmosis-devel
    reference/scripting
    reference/nersc_examples
    help/faq
+   help/changelog
 
 
 
