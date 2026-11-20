@@ -18,6 +18,14 @@ Pull request titles are not always clear on their own, so DESCRIPTION_OVERRIDES
 below can replace the description of any pull request, keyed by repository and
 PR number.  Overrides are written in RST (e.g. ``module_name``), and are used
 both for standard library PRs and for PR bullet points in cosmosis release notes.
+REVIEWED_UNCHANGED lists PRs that were checked and judged clear as they are.
+
+To find PRs that have not been reviewed yet (e.g. new ones since the last run):
+
+    python generate_changelog.py --unreviewed
+
+prints a tab-separated list of repository, PR number, release tag or merge
+date, and current description, without writing the page.
 """
 # Replacement descriptions for pull requests whose titles are unclear.
 # Keys are repository name, then PR number. Values are RST text.
@@ -191,6 +199,26 @@ DESCRIPTION_OVERRIDES = {
     },
 }
 
+# PRs that have been reviewed and whose original description was judged clear
+# enough, so need no override. Together with DESCRIPTION_OVERRIDES this records
+# which PRs have been reviewed; ``--unreviewed`` lists any that are in neither.
+REVIEWED_UNCHANGED = {
+    "cosmosis": {
+        12, 21, 26, 37, 41, 44, 49, 55, 57, 58, 67, 70, 74, 76, 84, 93, 102, 103, 105,
+        106, 108, 111, 112, 116, 119, 127, 128, 129, 131, 135, 137, 141, 144, 147, 148,
+        149, 150, 151, 152, 154, 155, 157, 160, 163, 164, 169, 175, 177, 178, 179, 180,
+        185, 189, 198, 200, 201, 203, 204, 205, 208, 209, 211, 214, 220, 222, 223, 233,
+        234, 240, 245, 246, 250,
+    },
+    "cosmosis-standard-library": {
+        5, 11, 20, 29, 38, 39, 40, 42, 45, 46, 47, 51, 53, 58, 60, 61, 72, 78, 85, 94,
+        102, 106, 107, 122, 125, 126, 134, 135, 157, 162, 165, 168, 180, 182, 184, 186,
+        187, 188, 194, 199, 200, 210, 211, 215, 216, 218, 219, 222, 225, 227, 234, 249,
+        252, 254,
+    },
+}
+
+import argparse
 import datetime
 import json
 import os
@@ -331,9 +359,7 @@ def release_body_to_rst(body):
 # --- Page sections -----------------------------------------------------------
 
 def cosmosis_section():
-    releases = fetch_all(f"{API}/cosmosis/releases")
-    releases = [r for r in releases if not r["draft"] and major_version(r["tag_name"]) >= MIN_COSMOSIS_MAJOR]
-    releases.sort(key=lambda r: r["published_at"] or r["created_at"], reverse=True)
+    releases = fetch_cosmosis_releases()
     lines = [underline("CosmoSIS", "-")]
     lines.append(
         "Changes to the core ``cosmosis`` package, taken from the "
@@ -350,9 +376,7 @@ def cosmosis_section():
 
 
 def standard_library_section():
-    pulls = fetch_all(f"{API}/cosmosis-standard-library/pulls?state=closed")
-    pulls = [p for p in pulls if p["merged_at"] and p["base"]["ref"] == "main"]
-    pulls.sort(key=lambda p: p["merged_at"], reverse=True)
+    pulls = fetch_standard_library_pulls()
 
     by_month = OrderedDict()
     for p in pulls:
@@ -382,7 +406,50 @@ def standard_library_section():
     return "\n".join(lines)
 
 
+def fetch_cosmosis_releases():
+    releases = fetch_all(f"{API}/cosmosis/releases")
+    releases = [r for r in releases if not r["draft"] and major_version(r["tag_name"]) >= MIN_COSMOSIS_MAJOR]
+    releases.sort(key=lambda r: r["published_at"] or r["created_at"], reverse=True)
+    return releases
+
+
+def fetch_standard_library_pulls():
+    pulls = fetch_all(f"{API}/cosmosis-standard-library/pulls?state=closed")
+    pulls = [p for p in pulls if p["merged_at"] and p["base"]["ref"] == "main"]
+    pulls.sort(key=lambda p: p["merged_at"], reverse=True)
+    return pulls
+
+
+def unreviewed_items():
+    """PRs in the changelog that are in neither DESCRIPTION_OVERRIDES nor REVIEWED_UNCHANGED."""
+    def reviewed(repo, number):
+        return number in DESCRIPTION_OVERRIDES[repo] or number in REVIEWED_UNCHANGED[repo]
+
+    items = {}
+    for r in fetch_cosmosis_releases():
+        for line in (r["body"] or "").replace("\r", "").split("\n"):
+            m = PR_BULLET.match(line.rstrip())
+            if not m or "made their first contribution" in line:
+                continue
+            number = int(m.group("num"))
+            if not reviewed("cosmosis", number) and ("cosmosis", number) not in items:
+                items[("cosmosis", number)] = (r["tag_name"], m.group("text").strip())
+    for p in fetch_standard_library_pulls():
+        if not reviewed("cosmosis-standard-library", p["number"]):
+            items[("cosmosis-standard-library", p["number"])] = (p["merged_at"][:10], p["title"].strip())
+    return [(repo, number, when, text) for (repo, number), (when, text) in sorted(items.items())]
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--unreviewed", action="store_true",
+                        help="List PRs not yet reviewed for clarity, instead of writing the page")
+    args = parser.parse_args()
+    if args.unreviewed:
+        for item in unreviewed_items():
+            print("\t".join(map(str, item)))
+        return
+
     today = datetime.date.today().isoformat()
     header = underline("Changelog", "=")
     intro = (
